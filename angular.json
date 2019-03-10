@@ -28,8 +28,7 @@
                   "replace": "apps/backend/api-app-test-server/src/environments/environment.ts",
                   "with": "apps/backend/api-app-test-server/src/environments/environment.prod.ts"
                 }
-              ],
-              "externalDependencies": "none"
+              ]
             }
           }
         },
@@ -83,8 +82,7 @@
                   "replace": "apps/backend/functions/src/environments/environment.ts",
                   "with": "apps/backend/functions/src/environments/environment.prod.ts"
                 }
-              ],
-              "externalDependencies": "none"
+              ]
             }
           }
         },

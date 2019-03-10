@@ -19,6 +19,8 @@
       "@tabu/backend/api-app": ["libs/backend/api-app/src/index.ts"]
     },
     "strict": true
+    //    "esModuleInterop": true,
+    //    "resolveJsonModule": true
   },
   "exclude": ["node_modules", "tmp"]
 }

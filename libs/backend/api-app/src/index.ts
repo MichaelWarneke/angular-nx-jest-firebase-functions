@@ -1,6 +1,6 @@
+import { NestFactory } from '@nestjs/core';
 import * as express from 'express';
 import { Express } from 'express';
-import { NestFactory } from '@nestjs/core';
 import { AppModule } from './lib/app.module';
 
 export const server: Express = express();
