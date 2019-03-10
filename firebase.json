@@ -11,7 +11,7 @@
     "source": "/"
   },
   "hosting": {
-    "public": "dist/apps/backend/api-app",
+    "public": "dist/apps/backend/api-app-test-server",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {

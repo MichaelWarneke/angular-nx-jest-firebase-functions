@@ -8,15 +8,17 @@
     "nx.json": "*"
   },
   "projects": {
-    "backend-api-app": {
-      "tags": [
-        "backend-api"
-      ]
+    "backend-api-app-test-server": {
+      "tags": ["backend-api-app-test-server"]
     },
     "backend-functions": {
-      "tags": [
-        "fb-functions"
-      ]
+      "tags": ["fb-functions"]
+    },
+    "backend-core": {
+      "tags": ["backend-core"]
+    },
+    "backend-api-app": {
+      "tags": ["backend-api-app"]
     }
   }
 }

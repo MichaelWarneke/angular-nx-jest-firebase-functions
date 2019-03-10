@@ -5,7 +5,7 @@
 
 import { NestFactory } from '@nestjs/core';
 
-import { AppModule } from './app/app.module';
+import { AppModule } from '@tabu/backend/api-app';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

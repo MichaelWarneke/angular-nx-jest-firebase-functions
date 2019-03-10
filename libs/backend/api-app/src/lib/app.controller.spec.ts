@@ -9,14 +9,16 @@ describe('AppController', () => {
   beforeAll(async () => {
     app = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [AppService],
+      providers: [AppService]
     }).compile();
   });
 
   describe('getData', () => {
-    it('should return "Welcome to backend-api-app!"', () => {
+    it('should return "Welcome to backend-api-app-test-server!"', () => {
       const appController = app.get<AppController>(AppController);
-      expect(appController.getData()).toBe('Welcome to backend-api-app!');
+      expect(appController.getData()).toBe(
+        'Welcome to backend-api-app-test-server!'
+      );
     });
   });
 });

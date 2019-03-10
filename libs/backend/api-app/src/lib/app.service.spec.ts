@@ -7,15 +7,15 @@ describe('AppService', () => {
 
   beforeAll(async () => {
     const app = await Test.createTestingModule({
-      providers: [AppService],
+      providers: [AppService]
     }).compile();
 
     service = app.get<AppService>(AppService);
   });
 
   describe('getData', () => {
-    it('should return "Welcome to backend-api-app!"', () => {
-      expect(service.getData()).toBe('Welcome to backend-api-app!');
+    it('should return "Welcome to backend-api-app-test-server!"', () => {
+      expect(service.getData()).toBe('Welcome to backend-api-app-test-server!');
     });
   });
 });

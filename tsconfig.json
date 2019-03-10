@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "@tabu/backend/core": ["libs/backend/core/src/index.ts"],
+      "@tabu/backend/api-app": ["libs/backend/api-app/src/index.ts"]
+    },
     "strict": true
   },
   "exclude": ["node_modules", "tmp"]
