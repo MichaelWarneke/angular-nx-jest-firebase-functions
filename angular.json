@@ -2,7 +2,67 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "",
-  "projects": {},
+  "projects": {
+    "backend-api-app": {
+      "root": "apps/backend/api-app",
+      "sourceRoot": "apps/backend/api-app/src",
+      "projectType": "application",
+      "prefix": "backend-api-app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/builders:node-build",
+          "options": {
+            "outputPath": "dist/apps/backend/api-app",
+            "main": "apps/backend/api-app/src/main.ts",
+            "tsConfig": "apps/backend/api-app/tsconfig.app.json",
+            "assets": [
+              "apps/backend/api-app/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/backend/api-app/src/environments/environment.ts",
+                  "with": "apps/backend/api-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "externalDependencies": "none"
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/builders:node-execute",
+          "options": {
+            "buildTarget": "backend-api-app:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/backend/api-app/tsconfig.app.json",
+              "apps/backend/api-app/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/backend/api-app/jest.config.js",
+            "tsConfig": "apps/backend/api-app/tsconfig.spec.json"
+          }
+        }
+      }
+    }
+  },
   "cli": {
     "warnings": {
       "typescriptMismatch": false,
