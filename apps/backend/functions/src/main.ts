@@ -1,20 +1,10 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- **/
+import * as functions from 'firebase-functions';
 
-import * as express from 'express';
-
-const app = express();
-
-app.get('/api', (req, res) => {
-  res.send(`Welcome to backend-functions!`);
-});
-
-const port = process.env.port || 3333;
-app.listen(port, (err) => {
-  if (err) {
-    console.error(err);
+// // Start writing Firebase Functions
+// // https://firebase.google.com/docs/functions/typescript
+//
+export const helloWorld = functions.https.onRequest(
+  (request: any, response: any) => {
+    response.send('Hello from Firebase!');
   }
-  console.log(`Listening at http://localhost:${port}`);
-});
+);

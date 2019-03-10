@@ -5,17 +5,18 @@
   },
   "functions": {
     "predeploy": [
-      "yarn --prefix \"$RESOURCE_DIR\" run lint",
-      "yarn --prefix \"$RESOURCE_DIR\" run build"
-    ]
+      "yarn --prefix \"$RESOURCE_DIR\" lint backend-functions",
+      "yarn --prefix \"$RESOURCE_DIR\" build backend-functions --prod"
+    ],
+    "source": "/"
   },
   "hosting": {
-    "public": "dist",
+    "public": "dist/apps/backend/api-app",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "destination": "server"
       }
     ]
   },
