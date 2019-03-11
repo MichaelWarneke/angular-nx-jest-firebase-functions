@@ -19,6 +19,12 @@
     },
     "backend-api-app": {
       "tags": ["backend-api-app"]
+    },
+    "frontend-tabu": {
+      "tags": ["tabu-app"]
+    },
+    "frontend-tabu-e2e": {
+      "tags": []
     }
   }
 }

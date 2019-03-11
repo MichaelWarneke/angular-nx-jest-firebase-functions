@@ -11,12 +11,12 @@
     "source": "/"
   },
   "hosting": {
-    "public": "dist/apps/backend/api-app-test-server",
+    "public": "dist/apps/frontend/tabu",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "**",
-        "destination": "server"
+        "destination": "/index.html"
       }
     ]
   },

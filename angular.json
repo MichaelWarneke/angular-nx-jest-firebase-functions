@@ -170,6 +170,124 @@
           "styleext": "scss"
         }
       }
+    },
+    "frontend-tabu": {
+      "root": "apps/frontend/tabu/",
+      "sourceRoot": "apps/frontend/tabu/src",
+      "projectType": "application",
+      "prefix": "tabu",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/frontend/tabu",
+            "index": "apps/frontend/tabu/src/index.html",
+            "main": "apps/frontend/tabu/src/main.ts",
+            "polyfills": "apps/frontend/tabu/src/polyfills.ts",
+            "tsConfig": "apps/frontend/tabu/tsconfig.app.json",
+            "assets": [
+              "apps/frontend/tabu/src/favicon.ico",
+              "apps/frontend/tabu/src/assets"
+            ],
+            "styles": ["apps/frontend/tabu/src/styles.scss"],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/frontend/tabu/src/environments/environment.ts",
+                  "with": "apps/frontend/tabu/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "frontend-tabu:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "frontend-tabu:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "frontend-tabu:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/frontend/tabu/tsconfig.app.json",
+              "apps/frontend/tabu/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/frontend/tabu/jest.config.js",
+            "tsConfig": "apps/frontend/tabu/tsconfig.spec.json",
+            "setupFile": "apps/frontend/tabu/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "frontend-tabu-e2e": {
+      "root": "apps/frontend/tabu-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/frontend/tabu-e2e/cypress.json",
+            "tsConfig": "apps/frontend/tabu-e2e/tsconfig.e2e.json",
+            "devServerTarget": "frontend-tabu:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "frontend-tabu:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/frontend/tabu-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
     }
   },
   "cli": {
