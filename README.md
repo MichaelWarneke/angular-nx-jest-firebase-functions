@@ -2,43 +2,69 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) using [Nrwl Nx](https://nrwl.io/nx).
 
-## Nrwl Extensions for Angular (Nx)
+## Steps to create
 
-<a href="https://nrwl.io/nx"><img src="https://preview.ibb.co/mW6sdw/nx_logo.png"></a>
+### Create Workspace
 
-Nx is an open source toolkit for enterprise Angular applications.
+Using npx or one of the other options to create nx workspaces
+npx create-nx-workspace my-workspace
 
-Nx is designed to help you create and build enterprise grade Angular applications. It provides an opinionated approach to application project structure and patterns.
+Add jest unit test
+ng g jest
 
-## Quick Start & Documentation
+Create the web-app
+ng g app web-app --e2e-test-runner=cypress --unit-test-runner=jest --directory=frontend --routing --prefix=tabu-app--tags=tabu-app
 
-[Watch a 5-minute video on how to get started with Nx.](http://nrwl.io/nx)
+Add dep for testing
+yarn add cypress jasmine-marbles -D
+If using Ubuntu (WSL) install deps for cypress
+apt-get install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
 
-## Generate your first application
+Check thats all working
+ng serve
 
-Run `ng generate app myapp` to generate an application. When using Nx, you can create multiple applications and libraries in the same CLI workspace. Read more [here](http://nrwl.io/nx).
+### Firebase init
 
-## Development server
+firebase init
+Select all relevant services (Firestore, Functions, Hosting, Storage)
+This will also install the functions folder. It will be delted later, but we keep it for copying some stuff.
 
-Run `ng serve --project=myapp` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Firebase functions
 
-## Code scaffolding
+Create the functions app
+ng g node-application functions --directory=backend --framework=express --unitTestRunner=jest --tags=backend-functions-app
+Replace teh content of main.ts with the content of the original functions folder index.ts and uncomment the helloWorld function
 
-Run `ng generate component component-name --project=myapp` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+angular.json
+Delete the line "externalDependencies": "none" from angular.json inside the backend-functions section.
+The line will cause a lot of errors when building to production with modules not found (all of them are json files)
 
-## Build
+firebase.json
+In the firebase.json add following line under the predeploy section of the functions
+"source": "/"
+Without this line there will be an error "Path must be a string" when building
 
-Run `ng build --project=myapp` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+package.json
+In the package.json add following lines somewhere in the base of the tree (where all the other stuff is)
+"main": "dist/apps/backend/functions/main.js",
+"engines": {
+"node": "8"
+},
+In the scripts section add following scripts to have the functions started
+"firebase:serve": "concurrently --kill-others \"yarn build backend-functions --watch\" \"firebase serve --only functions\"",
+"firebase:shell": "concurrently --kill-others \"yarn build backend-functions --watch\" \"firebase functions:shell\" --raw",
+"firebase:deploy": "firebase deploy",
+"firebase:logs": "firebase functions:log"
 
-## Running unit tests
+Add dependencies
+yarn add concurrently -D
+yarn add firebase firebase-admin firebase-functions
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Test a serve of the functions
+yarn firebase:serve
 
-## Running end-to-end tests
+Now delete the original functions folder.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+### Nestjs
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+.. coming
