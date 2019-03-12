@@ -17,8 +17,9 @@ ng g app web-app --e2e-test-runner=cypress --unit-test-runner=jest --directory=f
 
 <b>Add dep for testing</b><br>
 yarn add cypress jasmine-marbles -D<br>
-If using Ubuntu (WSL) install deps for cypress<br>
-apt-get install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2<br>
+
+- If using Ubuntu (WSL) install deps for cypress<br>
+  apt-get install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2<br>
 
 <b>Check thats all working</b><br>
 ng serve
@@ -26,44 +27,49 @@ ng serve
 ### Firebase init
 
 firebase init<br>
-Select all relevant services (Firestore, Functions, Hosting, Storage)<br>
-This will also install the functions folder. It will be delted later, but we keep it for copying some stuff.<br>
+
+- Select all relevant services (Firestore, Functions, Hosting, Storage)<br>
+- This will also install the functions folder. It will be delted later, but we keep it for copying some stuff.<br>
 
 ### Firebase functions
 
-Create the functions app
-ng g node-application functions --directory=backend --framework=express --unitTestRunner=jest --tags=backend-functions-app
-Replace teh content of main.ts with the content of the original functions folder index.ts and uncomment the helloWorld function
+<b>Create the functions app</b><br>
+ng g node-application functions --directory=backend --framework=express --unitTestRunner=jest --tags=backend-functions-app<br>
 
-angular.json
-Delete the line "externalDependencies": "none" from angular.json inside the backend-functions section.
-The line will cause a lot of errors when building to production with modules not found (all of them are json files)
+- Replace teh content of main.ts with the content of the original functions folder index.ts and uncomment the helloWorld function<br>
 
-firebase.json
-In the firebase.json add following line under the predeploy section of the functions
-"source": "/"
-Without this line there will be an error "Path must be a string" when building
+<b>angular.json</b><br>
 
-package.json
-In the package.json add following lines somewhere in the base of the tree (where all the other stuff is)
-"main": "dist/apps/backend/functions/main.js",
-"engines": {
-"node": "8"
-},
-In the scripts section add following scripts to have the functions started
-"firebase:serve": "concurrently --kill-others \"yarn build backend-functions --watch\" \"firebase serve --only functions\"",
-"firebase:shell": "concurrently --kill-others \"yarn build backend-functions --watch\" \"firebase functions:shell\" --raw",
-"firebase:deploy": "firebase deploy",
-"firebase:logs": "firebase functions:log"
+- Delete the line "externalDependencies": "none" from angular.json inside the backend-functions section.<br>
+- The line will cause a lot of errors when building to production with modules not found (all of them are json files)<br>
 
-Add dependencies
-yarn add concurrently -D
-yarn add firebase firebase-admin firebase-functions
+<b>firebase.json</b><br>
 
-Test a serve of the functions
-yarn firebase:serve
+- In the firebase.json add following line under the predeploy section of the functions<br>
+  "source": "/"<br>
+- Without this line there will be an error "Path must be a string" when building<br>
 
-Now delete the original functions folder.
+<b>package.json</b><br>
+
+- In the package.json add following lines somewhere in the base of the tree (where all the other stuff is)<br>
+  "main": "dist/apps/backend/functions/main.js",<br>
+  "engines": {<br>
+  "node": "8"<br>
+  },<br>
+- In the scripts section add following scripts to have the functions started<br>
+  "firebase:serve": "concurrently --kill-others \"yarn build backend-functions --watch\" \"firebase serve --only functions\"",<br>
+  "firebase:shell": "concurrently --kill-others \"yarn build backend-functions --watch\" \"firebase functions:shell\" --raw",<br>
+  "firebase:deploy": "firebase deploy",<br>
+  "firebase:logs": "firebase functions:log"<br>
+
+<b>Add dependencies</b><br>
+yarn add concurrently -D<br>
+yarn add firebase firebase-admin firebase-functions<br>
+
+<b>Test a serve of the functions</b><br>
+yarn firebase:serve<br>
+
+<b>Now delete the original functions folder.</b><br>
 
 ### Nestjs
 
