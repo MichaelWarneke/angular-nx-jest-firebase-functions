@@ -36,7 +36,7 @@ firebase init<br>
 <b>Create the functions app</b><br>
 ng g node-application functions --directory=backend --framework=express --unitTestRunner=jest --tags=backend-functions-app<br>
 
-- Replace teh content of main.ts with the content of the original functions folder index.ts and uncomment the helloWorld function<br>
+- Replace the content of main.ts with the content of the original functions folder index.ts and uncomment the helloWorld function<br>
 
 <b>angular.json</b><br>
 
