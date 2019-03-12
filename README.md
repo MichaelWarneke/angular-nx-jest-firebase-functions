@@ -9,25 +9,25 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 <b>Using npx or one of the other options to create nx workspaces</b><br>
 npx create-nx-workspace my-workspace
 
-<b>Add jest unit test</b>
+<b>Add jest unit test</b><br>
 ng g jest
 
-Create the web-app
+<b>Create the web-app</b><br>
 ng g app web-app --e2e-test-runner=cypress --unit-test-runner=jest --directory=frontend --routing --prefix=tabu-app--tags=tabu-app
 
-Add dep for testing
-yarn add cypress jasmine-marbles -D
-If using Ubuntu (WSL) install deps for cypress
-apt-get install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
+<b>Add dep for testing</b><br>
+yarn add cypress jasmine-marbles -D<br>
+If using Ubuntu (WSL) install deps for cypress<br>
+apt-get install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2<br>
 
-Check thats all working
+<b>Check thats all working</b><br>
 ng serve
 
 ### Firebase init
 
-firebase init
-Select all relevant services (Firestore, Functions, Hosting, Storage)
-This will also install the functions folder. It will be delted later, but we keep it for copying some stuff.
+firebase init<br>
+Select all relevant services (Firestore, Functions, Hosting, Storage)<br>
+This will also install the functions folder. It will be delted later, but we keep it for copying some stuff.<br>
 
 ### Firebase functions
 
