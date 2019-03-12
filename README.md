@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### Create Workspace
 
-<b>Using npx or one of the other options to create nx workspaces</b>
+<b>Using npx or one of the other options to create nx workspaces</b><br>
 npx create-nx-workspace my-workspace
 
 <b>Add jest unit test</b>
